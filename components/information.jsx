@@ -2,26 +2,30 @@ import { useState, useEffect } from "react";
 import React from "react";
 
 const Information = (props) => {
-    const iconsUrl = `//openweathermap.org/img/wn/`
+    const isResult = props.result
+    const iconsUrl = isResult?`//openweathermap.org/img/wn/${isResult.weather[0].icon}@2x.png`:''
     function toHumanDate(timestamp) {
         let time = new Date(timestamp*1000)
         return time.toLocaleTimeString() 
     }
-    const isResult = props.result
 
-    const tabs = document.querySelector(".info");
-    const tabButton = tabs.querySelectorAll(".tabs_item"); 
-    const contents = tabs.querySelectorAll(".tabs_block"); 
-    tabs.onclick = e => {
-        const id = e.target.dataset.id; 
-        if (id) {
-            tabButton.forEach(btn =>  btn.classList.remove("active")); 
-            contents.forEach(content =>  content.classList.remove("active")); 
-            e.target.classList.add("active"); 
-            tabs.querySelector('#'+id).classList.add("active"); 
+    useEffect(()=>{
+        const tabs = document.querySelector(".tabs_blocks");
+        const tabButton = tabs.querySelectorAll(".tabs_item");
+        const contents = tabs.querySelectorAll(".tabs_block");
+        tabs.onclick = e => {
+            const id = e.target.dataset.id;
+            if (id)
+     {
+                tabButton.forEach(btn =>  btn.classList.remove("active"));
+                contents.forEach(content =>  content.classList.remove("active"));
+                e.target.classList.add("active");
+                tabs.querySelector('#'+id).classList.add("active");
+            }
         }
-    }
-
+    
+    },[])
+    
   return (
     <div className="weather_information">
       <div className="tabs_blocks">
@@ -30,7 +34,7 @@ const Information = (props) => {
             <div className="tab_now">
               <div className="temperature">{isResult?Math.round(isResult.main.temp):'---°'}</div>
               <div className="weather_icon">
-              <img src={isResult?`${iconsUrl}${isResult.weather[0].icon}@2x.png`:''} wight='250' height='100'/>
+              <img src={iconsUrl} wight='250' height='100'/>
               </div>
               <div className="cityFavorite">
                 <div className="city">{isResult?isResult.name:'---'}</div>

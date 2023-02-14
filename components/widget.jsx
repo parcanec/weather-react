@@ -6,12 +6,13 @@ import Information from "./information"
 import { getWeather } from "../src/getWeather"
 
 const Widget = (props) => {
-    const [favorites, setFavorites] = useState(['Tiraspol', 'Paris'])
+    const [favorites, setFavorites] = useState([])
     const [result, setResult] = useState(null)
     
     useEffect(()=>{
         console.log(favorites)
     },[favorites])
+    
     const addFavoriteItem = (city)=> {
         const array = [...favorites, city]
         setFavorites(array)
