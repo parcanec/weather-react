@@ -5,7 +5,7 @@ import Widget from '../components/widget.jsx'
 function App() {
 
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <Widget/>
       </div>
   )
