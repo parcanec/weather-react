@@ -7,7 +7,7 @@ const Input = (props) => {
   const submit = (env) => {
     env.preventDefault();
     if (text !== "") {
-      props.submit(text)
+      props.submit(text);
       setText("");
     }
   };
