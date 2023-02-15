@@ -1,12 +1,12 @@
 import React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, createContext } from "react"
 import Input from "./input"
 import FavItem from "./favItem"
 import Information from "./information"
 import { getWeather } from "../src/getWeather"
 
 const Widget = (props) => {
-    const [favorites, setFavorites] = useState([])
+    const [favorites, setFavorites] = useState(['ТИрасполь', "Бендеры"])
     const [result, setResult] = useState(null)
     
     useEffect(()=>{
@@ -26,12 +26,17 @@ const Widget = (props) => {
         setResult(weather)
     }
 
+
   return (
     <div className="widget">
-      <Input submit={checkWeather} value={props.text} />
+      <Input submit={checkWeather} value={props.text}/>
       
       <div className="info">
-        <Information result={result}/>
+        <Information result={result} 
+            favorites={favorites}
+            add={addFavoriteItem}
+            del={delFavoriteItem}
+            />
 
         <div className="weather_favorite">
           <div className="favorite_block">

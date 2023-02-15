@@ -8,7 +8,7 @@ const Information = (props) => {
         let time = new Date(timestamp*1000)
         return time.toLocaleTimeString() 
     }
-
+    
     useEffect(()=>{
         const tabs = document.querySelector(".tabs_blocks");
         const tabButton = tabs.querySelectorAll(".tabs_item");
@@ -38,8 +38,15 @@ const Information = (props) => {
               </div>
               <div className="cityFavorite">
                 <div className="city">{isResult?isResult.name:'---'}</div>
-                <button id="favorite_button" type="submit">
-                  &#9825;
+                <button className='heart' 
+                        id="favorite_button" 
+                        type="submit"
+                        onClick = {() => {
+                            const favCopy = [...props.favorites]
+                            const isFav = Boolean(favCopy.find(item=>item==isResult.name))
+                            isFav?props.del(isResult.name):props.add(isResult.name)
+                            }
+                        }> &#9825;
                 </button>
               </div>
             </div>
