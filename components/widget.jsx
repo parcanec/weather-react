@@ -5,13 +5,11 @@ import FavItem from "./favItem";
 import Information from "./information";
 import { getWeather } from "../src/getWeather";
 
+export const MyContext = createContext([])
 const Widget = (props) => {
   const [favorites, setFavorites] = useState(["ТИрасполь", "Бендеры"]);
   const [result, setResult] = useState(null);
   
-  const value = {favorites}
-  const MyContext = createContext(value)
-
   useEffect(() => {
     console.log(favorites);
   }, [favorites]);
@@ -30,7 +28,7 @@ const Widget = (props) => {
   };
 
   return (
-<MyContext.Provider value = {value}>
+<MyContext.Provider value = {favorites}>
     <div className="widget">
       <Input submit={checkWeather} value={props.text} />
       <div className="info">

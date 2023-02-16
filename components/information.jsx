@@ -11,6 +11,7 @@ const Information = (props) => {
     let time = new Date(timestamp * 1000);
     return time.toLocaleTimeString();
   }
+  
   const value = useContext(MyContext)
 
   useEffect(() => {
@@ -47,9 +48,8 @@ const Information = (props) => {
                   id="favorite_button"
                   type="submit"
                   onClick={() => {
-                    const favCopy = [...value.favorites];
                     const isFav = Boolean(
-                      favCopy.find((item) => item == isResult.name)
+                      value.find((item) => item == isResult.name)
                     );
                     isFav ? props.del(isResult.name) : props.add(isResult.name);
                   }}
