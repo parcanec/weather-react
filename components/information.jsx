@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext} from "react";
 import React from "react";
-import MyContext from "./widget"
+import {MyContext} from "./widget"
 
 const Information = (props) => {
   const isResult = props.result;
@@ -11,7 +11,7 @@ const Information = (props) => {
     let time = new Date(timestamp * 1000);
     return time.toLocaleTimeString();
   }
-  
+
   const value = useContext(MyContext)
 
   useEffect(() => {
