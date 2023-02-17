@@ -4,12 +4,12 @@ import Widget from "../components/widget.jsx";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-const state = {
+const initialState = {
   favorites: ["Tiraspol"],
   weather: []
 };
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "addFavorite":
       const addState = {...state, favorites:[...state.favorites, action.payload]};

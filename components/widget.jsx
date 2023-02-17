@@ -29,11 +29,11 @@ const Widget = (props) => {
     setFavorites(array);
   };
  */  
-  const addFavoriteItem = (city) => {
-    dispatch({type:"addFavorite", payload:city})
+  const addFavoriteItem = (anyCity) => {
+    dispatch({type:"addFavorite", payload:anyCity})
   };
-  const delFavoriteItem = () => {
-    dispatch({type:"delFavorite", payload:city})
+  const delFavoriteItem = (anyCity) => {
+    dispatch({type:"delFavorite", payload:anyCity})
   };
 
     const checkWeather = async (text) => {
