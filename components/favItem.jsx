@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 
-const FavItem = (props) => {
+const FavItem = (props) => {  
   return (
     <li>
       <span
