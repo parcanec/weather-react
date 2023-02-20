@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import {useSelector } from "react-redux";
+import { favorites} from "../selector";
 
 const Information = (props) => {
   const favorites = useSelector((state) => state.favorites);

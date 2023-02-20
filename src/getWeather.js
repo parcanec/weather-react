@@ -1,4 +1,3 @@
-
 export async function getWeather(cityName) {
     try {
         const serverUrl = '//api.openweathermap.org/data/2.5/weather'
