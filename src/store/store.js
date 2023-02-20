@@ -24,7 +24,8 @@ const reducer = (state = initialState, action) => {
             const setWeather = {
                 ...state,
                 weather: action.payload,
-            }
+            };
+            return setWeather;
         default:
             return state;
     }

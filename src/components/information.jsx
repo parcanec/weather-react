@@ -7,7 +7,7 @@ const Information = (props) => {
   const weather = selectWeather()
   const isResult = !!weather.main
   const iconsUrl = isResult
-                    ? `//openweathermap.org/img/wn/${weather[0]?.icon}@2x.png`
+                    ? `//openweathermap.org/img/wn/${weather.weather[0]?.icon}@2x.png`
                     : "";
   function toHumanDate(timestamp) {
     let time = new Date(timestamp * 1000);
@@ -36,22 +36,22 @@ const Information = (props) => {
           <div id="tab01" className="tabs_block active">
             <div className="tab_now">
               <div className="temperature">
-                {isResult ? Math.round(isResult.main.temp) : "---°"}
+                {isResult ? Math.round(weather.main.temp) : "---°"}
               </div>
               <div className="weather_icon">
                 <img src={iconsUrl} wight="250" height="100" />
               </div>
               <div className="cityFavorite">
-                <div className="city">{isResult ? isResult.name : "---"}</div>
+                <div className="city">{isResult ? weather.name : "---"}</div>
                 <button
                   className="heart"
                   id="favorite_button"
                   type="submit"
                   onClick={() => {
                     const isFav = Boolean(
-                      favorites.find((item) => item == isResult.name)
+                      favorites.find((item) => item == weather.name)
                     );
-                    isFav ? props.del(isResult.name) : props.add(isResult.name);
+                    isFav ? props.del(weather.name) : props.add(weather.name);
                   }}
                 >
                   {" "}
@@ -63,25 +63,25 @@ const Information = (props) => {
 
           <div id="tab02" className="tabs_block">
             <div className="tab_details">
-              <div className="city">{isResult ? isResult.name : "---"}</div>
+              <div className="city">{isResult ? weather.name : "---"}</div>
               <div>
                 <p className="temperatureTab2">
                   Temperature:{" "}
-                  {isResult ? Math.round(isResult.main.temp) : "---°"}{" "}
+                  {isResult ? Math.round(weather.main.temp) : "---°"}{" "}
                 </p>
                 <p className="feelsLikeForm2">
                   Feels like:{" "}
-                  {isResult ? Math.round(isResult.main.feels_like) : "---°"}{" "}
+                  {isResult ? Math.round(weather.main.feels_like) : "---°"}{" "}
                 </p>
                 <p className="weatherForm2">
-                  Weather: {isResult ? isResult.weather[0].main : "---°"}{" "}
+                  Weather: {isResult ? weather.weather[0].main : "---°"}{" "}
                 </p>
                 <p className="sunriseForm2">
                   Sunrise:{" "}
-                  {isResult ? toHumanDate(isResult.sys.sunrise) : "---°"}
+                  {isResult ? toHumanDate(weather.sys.sunrise) : "---°"}
                 </p>
                 <p className="sunsetForm2">
-                  Sunset: {isResult ? toHumanDate(isResult.sys.sunset) : "---°"}
+                  Sunset: {isResult ? toHumanDate(weather.sys.sunset) : "---°"}
                 </p>
               </div>
             </div>
