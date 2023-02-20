@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import {useSelector } from "react-redux";
-import { favorites} from "../selector";
+import {selectFavorites, selectWeather} from "../store/selector.js";
+
 
 const Information = (props) => {
-  const favorites = useSelector((state) => state.favorites);
-  const isResult = props.result;
+  const favorites = selectFavorites()
+  const weather = selectWeather()
+  const isResult = !!weather.main
   const iconsUrl = isResult
-                    ? `//openweathermap.org/img/wn/${isResult.weather[0].icon}@2x.png`
+                    ? `//openweathermap.org/img/wn/${weather[0]?.icon}@2x.png`
                     : "";
   function toHumanDate(timestamp) {
     let time = new Date(timestamp * 1000);

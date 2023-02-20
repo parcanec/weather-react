@@ -1,39 +1,8 @@
 import "./App.css";
-import Widget from "./components/widget";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
+import Widget from "./components/widget.jsx";
+import store from "./store/store.js";
 
-const initialState = {
-  favorites: ["Tiraspol"],
-  weather: [],
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "addFavorite":
-      const addState = {
-        ...state,
-        favorites: [...state.favorites, action.payload],
-      };
-      return addState;
-    case "delFavorite":
-      const delState = {
-        ...state,
-        favorites: [
-          ...state.favorites.filter((anyCity) => anyCity !== action.payload)],
-      };
-      return delState;
-    case "getWeather":
-      const setWeather = {
-        ...state, 
-        weather: action.payload,
-      }
-    default:
-      return state;
-  }
-};
-
-const store = createStore(reducer);
 
 function App() {
   return (
