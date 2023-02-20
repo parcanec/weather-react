@@ -1,6 +1,4 @@
-import { useState, useEffect, useContext} from "react";
-import React from "react";
-import {MyContext} from "./widget"
+import React, { useEffect } from "react";
 
 const Information = (props) => {
   const isResult = props.result;
@@ -11,8 +9,6 @@ const Information = (props) => {
     let time = new Date(timestamp * 1000);
     return time.toLocaleTimeString();
   }
-
-  const value = useContext(MyContext)
 
   useEffect(() => {
     const tabs = document.querySelector(".tabs_blocks");
@@ -49,7 +45,7 @@ const Information = (props) => {
                   type="submit"
                   onClick={() => {
                     const isFav = Boolean(
-                      value.find((item) => item == isResult.name)
+                      isResult.find((item) => item == isResult.name)
                     );
                     isFav ? props.del(isResult.name) : props.add(isResult.name);
                   }}
@@ -103,9 +99,11 @@ const Information = (props) => {
           <button data-id="tab02" className="tabs_item">
             Details
           </button>
+          {/*
           <button data-id="tab03" className="tabs_item">
             Forecast
           </button>
+          */}
         </nav>
       </div>
     </div>

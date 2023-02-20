@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./App.css";
 import Widget from "../components/widget.jsx";
 import { createStore } from "redux";
@@ -6,16 +5,24 @@ import { Provider } from "react-redux";
 
 const initialState = {
   favorites: ["Tiraspol"],
-  weather: []
+  weather: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "addFavorite":
-      const addState = {...state, favorites:[...state.favorites, action.payload]};
+      const addState = {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+      };
       return addState;
     case "delFavorite":
-      const delState = {...state, favorites:[...state.favorites.filter((anyCity) => anyCity !== action.payload)]}
+      const delState = {
+        ...state,
+        favorites: [
+          ...state.favorites.filter((anyCity) => anyCity !== action.payload),
+        ],
+      };
       return delState;
     default:
       return state;

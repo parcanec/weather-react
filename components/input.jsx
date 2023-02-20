@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import React, { useState } from "react";
 
 const Input = (props) => {
   const [text, setText] = useState("");
