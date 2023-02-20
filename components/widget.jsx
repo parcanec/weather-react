@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Input from "./input";
 import FavItem from "./favItem";
 import Information from "./information";
-import { getWeather } from "../src/getWeather";
+import {getWeather} from '../src/getWeather'
 import { useDispatch, useSelector } from "react-redux";
 
 const Widget = (props) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites);
-
-  const [result, setResult] = useState(null);
+  const weather = useSelector((state) => state.weather);
 
   const addFavoriteItem = (anyCity) => {
     dispatch({ type: "addFavorite", payload: anyCity });
@@ -18,17 +17,16 @@ const Widget = (props) => {
     dispatch({ type: "delFavorite", payload: anyCity });
   };
 
-  const checkWeather = async (text) => {
+  const getWeather = async (text) => {
     const weather = await getWeather(text);
-    setResult(weather);
-  };
+    dispatch({type: "getWeather", payload: weather});
+  }
 
   return (
     <div className="widget">
-      <Input submit={checkWeather} value={props.text} />
+      <Input submit={getWeather} value={props.text} />
       <div className="info">
         <Information
-          result={result}
           add={addFavoriteItem}
           del={delFavoriteItem}
         />
@@ -40,7 +38,7 @@ const Widget = (props) => {
                 <FavItem
                   cityName={item}
                   del={delFavoriteItem}
-                  check={checkWeather}
+                  check={getWeather}
                 />
               ))}
             </ul>

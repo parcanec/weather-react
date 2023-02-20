@@ -20,10 +20,14 @@ const reducer = (state = initialState, action) => {
       const delState = {
         ...state,
         favorites: [
-          ...state.favorites.filter((anyCity) => anyCity !== action.payload),
-        ],
+          ...state.favorites.filter((anyCity) => anyCity !== action.payload)],
       };
       return delState;
+    case "getWeather":
+      const setWeather = {
+        ...state, 
+        weather: action.payload,
+      }
     default:
       return state;
   }

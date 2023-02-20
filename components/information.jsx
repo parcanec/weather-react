@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import {useSelector } from "react-redux";
 
 const Information = (props) => {
+  const favorites = useSelector((state) => state.favorites);
   const isResult = props.result;
   const iconsUrl = isResult
-    ? `//openweathermap.org/img/wn/${isResult.weather[0].icon}@2x.png`
-    : "";
+                    ? `//openweathermap.org/img/wn/${isResult.weather[0].icon}@2x.png`
+                    : "";
   function toHumanDate(timestamp) {
     let time = new Date(timestamp * 1000);
     return time.toLocaleTimeString();
@@ -45,7 +47,7 @@ const Information = (props) => {
                   type="submit"
                   onClick={() => {
                     const isFav = Boolean(
-                      isResult.find((item) => item == isResult.name)
+                      favorites.find((item) => item == isResult.name)
                     );
                     isFav ? props.del(isResult.name) : props.add(isResult.name);
                   }}
