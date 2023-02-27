@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const HelpPage = () => {
     return (
-        <div>
-            This page doesnt exist <Link to='/'>help</Link>
+        <div className="helppage">
+            This page doesnt exist <Link to='/'>Вернуться домой</Link>
         </div>
     )
 }

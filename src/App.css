@@ -14,7 +14,16 @@
   display: flex;
 }
 
-.widget {
+.widget, .helppage {
+  width: 620px;
+  margin: 0px auto;
+  background-color: white;
+  border: 1px solid;
+}
+.menu {
+  font-family: sans-serif;
+  display: flex;
+  justify-content:space-between;
   width: 620px;
   margin: 0px auto;
   background-color: white;
@@ -23,6 +32,7 @@
 
 .info {
   display:flex;
+  justify-content:space-between;
 }
 
 .input_div {
